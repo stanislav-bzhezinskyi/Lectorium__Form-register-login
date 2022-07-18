@@ -1,0 +1,135 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: #382d57;
+    width: 696px;
+    height: 686px;
+    padding: 47px 53px;
+    box-sizing: border-box;
+}
+
+.link {
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    padding-bottom: 4px;
+}
+
+.form__header {
+    margin-bottom: 84px;
+}
+
+.sign-in-link {
+    margin-left: 25px;
+    /* border-bottom: 2px solid yellow; */
+}
+
+.sign-up-link {
+    margin-left: 41px;
+}
+
+.form__main {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid #564567;
+    padding-bottom: 56px;
+}
+
+label {
+    display: inline;
+    /* display: flex;
+    flex-direction: column;  */
+    color: #767c92;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 26px;
+    letter-spacing: 0.5px;
+    margin-bottom: 18px;
+    cursor: pointer;
+}
+
+.checkbox-label {
+    padding-left: 0;
+    color: white;
+    font-weight: 500;
+    margin-left: 35px;
+    margin-bottom: 0;
+}
+
+.checkbox-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 26px;
+    margin-bottom: 45px;
+    cursor: pointer;
+    margin-top: 0;
+    width: max-content;
+    z-index: 1;
+}
+
+.checkbox-cover {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: #eec010;
+    z-index: 1;
+    border-radius: 2px;
+}
+
+#checkbox {
+    position: absolute;
+    margin: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+
+.input {
+    height: 50px;
+    border-radius: 50px;
+    outline: none;
+    border: none;
+    background-color: #5c5174;
+    padding-left: 20px;
+    font-size: 25px;
+    color: white;
+}
+
+.input-label {
+    width: max-content;
+}
+
+#button {
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #eec010;
+    color: white;
+    cursor: pointer;
+}
+
+.form__footer {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-link {
+    font-size: 14px;
+    font-weight: bold;
+    color: #767c92;
+    text-decoration: none;
+    margin-top: 57px;
+}

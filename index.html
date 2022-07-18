@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="/script.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <form action="/" method="post" class="form">
+        <div class="form__header">
+            <a href="#" class="sign-in-link link">SIGN IN</a>
+            <a href="#" class="sign-up-link link">SIGN UP</a>
+        </div>
+        <div class="form__main">
+            <div class="input-form">
+                <label for="username" class="input-label">
+                    Username
+                </label>
+                <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    class="input"
+                    required
+                >
+            </div>
+            <div class="input-form">
+                <label for="password" class="input-label">
+                    Password
+                </label>
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    class="input"
+                    required
+                >
+            </div>
+            <div class="checkbox-form">
+                <div class="checkbox-cover"></div>
+                <input type="checkbox" id="checkbox" required>
+                <div for="checkbox" class="checkbox-label">
+                    Keep Me Signed In
+                </div>
+            </div>
+            <button type="submit" class="input" id="button">SIGN IN</button>
+        </div>
+        <div class="form__footer">
+            <a href="#" class="footer-link">Forgot Password</a>
+        </div>
+    </form>
+</body>
+</html>
