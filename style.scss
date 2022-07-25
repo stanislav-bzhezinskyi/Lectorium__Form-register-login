@@ -1,0 +1,146 @@
+$greyLightColor: #827d99;
+$darkLightColor: #5d5275;
+$yellowColor: #eec010;
+
+body {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 694px;
+  height: 684px;
+  padding: 48px 53px;
+  background: linear-gradient(rgba(57,48,89,255) 0%, rgba(45,11,64,255) 100%);
+  box-sizing: border-box;
+
+  &__header-links {
+    height: max-content;
+    box-sizing: border-box;
+    margin: 0 0 83px 28px;
+  }
+
+  &__link {
+    font-size: 18px;
+    font-weight: bolt;
+    display: inline;
+    color: $greyLightColor;
+    text-decoration: none;
+    margin-right: 40px;
+    padding-bottom: 7px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  
+  &__title {
+    flex-direction: column;
+    color: $greyLightColor;
+    width: max-content;
+    margin: 0 0 18px 28px;
+}
+
+&__input {
+    margin-bottom: 24px;
+    font-size: 25px;
+    box-sizing: border-box;
+    height: 48px;
+    border-radius: 30px;
+    border: none;
+    padding: 20px;
+    background-color: $darkLightColor;
+    color: white;
+
+    &:focus {
+      outline: none;
+      background-color: $darkLightColor;
+    }
+  }
+
+  &__checkbox {
+    display: flex;align-items: center;
+    width: max-content;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 0 0 43px 28px;
+
+    // &::after {
+    //   content: '';
+    //   position: absolute;
+    //   width: 24px;
+    //   height: 24px;
+    //   background-color: $yellowColor;
+    // }
+
+    &:checked {
+      background-color: #eec010;
+    }
+  }
+
+  &__button {
+    display: flex;
+    cursor: pointer;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    background-color: $yellowColor;
+    font-size: 14px;
+    margin-bottom: 57px;
+    height: 48px;
+    border-radius: 30px;
+    border: none;
+  }
+
+  &__footer-link {
+    display: flex;
+    justify-content: center;
+    border-top: 2px solid $darkLightColor;
+    padding-top: 57px;
+    
+    .forgot-link {
+      color: $darkLightColor;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+}
+
+span {
+  display: flex;
+  width: max-content;
+  margin: 0 0 18px 28px;
+}
+
+#checkbox {
+  width: 24px;
+  height: 24px;
+  margin: 0 10px 0 0;
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 24px;
+    height: 24px;
+    background-color: #eec010;
+  }
+
+  &:checked::after {
+    width: 0;
+  }
+}
+
+.active-link {
+  border-bottom: 2px solid yellow;
+  color: white
+}

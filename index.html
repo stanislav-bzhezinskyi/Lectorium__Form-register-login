@@ -10,48 +10,45 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/" method="post" class="form">
-        <div class="form__header">
-            <a href="#" class="sign-in-link link">SIGN IN</a>
-            <a href="#" class="sign-up-link link">SIGN UP</a>
-        </div>
-        <div class="form__main">
-            <div class="input-form">
-                <label for="username" class="input-label">
-                    Username
-                </label>
-                <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    class="input"
-                    required
-                >
-            </div>
-            <div class="input-form">
-                <label for="password" class="input-label">
-                    Password
-                </label>
-                <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    class="input"
-                    required
-                >
-            </div>
-            <div class="checkbox-form">
-                <div class="checkbox-cover"></div>
-                <input type="checkbox" id="checkbox" required>
-                <div for="checkbox" class="checkbox-label">
-                    Keep Me Signed In
-                </div>
-            </div>
-            <button type="submit" class="input" id="button">SIGN IN</button>
-        </div>
-        <div class="form__footer">
-            <a href="#" class="footer-link">Forgot Password</a>
-        </div>
-    </form>
+<form action="/" method="post" class="form">
+    <div class="form__header-links">
+      <a href="/" class="form__link active-link" id="sign-in-link">SIGN IN</a>
+      <a href="/" class="form__link" id="sign-up-link">SIGN UP</a>
+    </div>
+    <div class="form__title">
+      Username
+    </div>
+    <input
+      type="text"
+      class="form__input"
+      id="username"
+      name="username"
+      required
+    >
+    
+    <div class="form__title">
+      Password
+    </div>
+    <input
+      type="password"
+      class="form__input"
+      id="password"
+      name="password"
+      required
+    >
+    
+    <label class="form__checkbox">
+      <input
+        type="checkbox"
+        id="checkbox"
+        required
+    >
+      Keep Me Signed In
+    </label>
+    <button type="submit" class="form__button">SIGN IN</button>
+    <div class="form__footer-link">
+        <a href="/" class=" forgot-link">Forgot Password</a>
+    </div>
+</form>
 </body>
 </html>
