@@ -1,21 +1,38 @@
 'use script'
 
-const signInLink = document.getElementById('sign-in-link');
-const signUpLink = document.getElementById('sign-up-link');
+const formHeader = document.getElementById('form__header-links')
 const form = document.querySelector('.form');
 
-signUpLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    signInLink.classList.value = 'form__link';
-    signUpLink.classList.value = 'form__link active-link';
-})
+const onLinkClick = (event) => {
+  event.preventDefault();
 
-signInLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    signUpLink.classList.value = 'form__link';
-    signInLink.classList.value = 'form__link active-link';
-})
+  if (event.target.classList.contains('form__link')) {
+    const links = formHeader.querySelectorAll('.form__link');
 
+    for (let link of links) {
+        link.classList.remove('active-link');
+    }
+
+    event.target.classList.add('active-link');
+  }
+}
+
+formHeader.addEventListener('click', onLinkClick);
+
+function isFilled() {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const checked = document.getElementById('checkbox').checked;
+ 
+  if (username !== '' && password !== '' && checked) {
+    document.getElementById('btn').removeAttribute('disabled');
+  }
+
+  if (username === '' || password === '' || checked === false) {
+    document.getElementById('btn').setAttribute('disabled', '');
+  }
+}
+ 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -23,4 +40,6 @@ form.addEventListener('submit', (event) => {
     console.log(
         Object.fromEntries(data.entries())
     );
-})
+});
+
+

@@ -47,7 +47,7 @@ body {
     color: $greyLightColor;
     width: max-content;
     margin: 0 0 18px 28px;
-}
+  }
 
 &__input {
     margin-bottom: 24px;
@@ -73,18 +73,6 @@ body {
     font-weight: 500;
     cursor: pointer;
     margin: 0 0 43px 28px;
-
-    // &::after {
-    //   content: '';
-    //   position: absolute;
-    //   width: 24px;
-    //   height: 24px;
-    //   background-color: $yellowColor;
-    // }
-
-    &:checked {
-      background-color: #eec010;
-    }
   }
 
   &__button {
@@ -99,6 +87,10 @@ body {
     height: 48px;
     border-radius: 30px;
     border: none;
+
+    &:disabled {
+      background-color: #827d99;
+    }
   }
 
   &__footer-link {

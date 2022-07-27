@@ -11,7 +11,7 @@
 </head>
 <body>
 <form action="/" method="post" class="form">
-    <div class="form__header-links">
+    <div id="form__header-links" class="form__header-links">
       <a href="/" class="form__link active-link" id="sign-in-link">SIGN IN</a>
       <a href="/" class="form__link" id="sign-up-link">SIGN UP</a>
     </div>
@@ -23,7 +23,7 @@
       class="form__input"
       id="username"
       name="username"
-      required
+      onkeyup="isFilled()"
     >
     
     <div class="form__title">
@@ -34,18 +34,18 @@
       class="form__input"
       id="password"
       name="password"
-      required
+      onkeyup="isFilled()"
     >
     
     <label class="form__checkbox">
       <input
         type="checkbox"
         id="checkbox"
-        required
-    >
-      Keep Me Signed In
+        onclick="isFilled()"
+      >
+        Keep Me Signed In
     </label>
-    <button type="submit" class="form__button">SIGN IN</button>
+    <button type="submit" class="form__button" id="btn" disabled>SIGN IN</button>
     <div class="form__footer-link">
         <a href="/" class=" forgot-link">Forgot Password</a>
     </div>
