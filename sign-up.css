@@ -1,0 +1,121 @@
+body {
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1024px;
+  height: 100%;
+  padding: 48px 53px;
+  background: linear-gradient(rgb(57, 48, 89) 0%, rgb(45, 11, 64) 100%);
+  box-sizing: border-box;
+}
+.form__header-links {
+  height: max-content;
+  box-sizing: border-box;
+  margin: 0 0 83px;
+}
+.form__link {
+  font-size: 18px;
+  font-weight: bolt;
+  display: inline;
+  color: #827d99;
+  text-decoration: none;
+  margin-right: 40px;
+  padding-bottom: 7px;
+}
+.form__link:last-child {
+  margin-right: 0;
+}
+.form__title {
+  flex-direction: column;
+  color: #827d99;
+  width: max-content;
+  margin: 0 0 12px 10px;
+}
+.form__input {
+  font-size: 25px;
+  box-sizing: border-box;
+  height: 48px;
+  border: none;
+  background-color: #5d5275;
+  color: white;
+  padding: 0 20px;
+  margin-bottom: 24px;
+}
+.form__input:focus {
+  outline: none;
+  background-color: #5d5275;
+}
+.form__button {
+  cursor: pointer;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  background-color: #eec010;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 30px;
+  border: none;
+  box-sizing: border-box;
+  padding: 24px 0;
+}
+.form__button:disabled {
+  background-color: #827d99;
+}
+
+span {
+  display: flex;
+  width: max-content;
+  margin: 0 0 18px 28px;
+}
+
+#checkbox {
+  width: 24px;
+  height: 24px;
+  margin: 0 10px 0 0;
+}
+#checkbox::after {
+  position: absolute;
+  content: "";
+  width: 24px;
+  height: 24px;
+  background-color: #eec010;
+}
+#checkbox:checked::after {
+  width: 0;
+}
+
+.active-link {
+  border-bottom: 2px solid yellow;
+  color: white;
+}
+
+.alert {
+  position: absolute;
+  bottom: -12px;
+  color: red;
+}
+.alert--green {
+  position: absolute;
+  bottom: -12px;
+  color: rgb(21, 245, 21);
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+.input-container:last-child {
+  margin-bottom: 85px;
+}
+
+/*# sourceMappingURL=sign-up.css.map */

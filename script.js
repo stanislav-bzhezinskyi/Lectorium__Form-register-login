@@ -4,7 +4,7 @@ const formHeader = document.getElementById('form__header-links')
 const form = document.querySelector('.form');
 
 const onLinkClick = (event) => {
-  event.preventDefault();
+  // event.preventDefault();
 
   if (event.target.classList.contains('form__link')) {
     const links = formHeader.querySelectorAll('.form__link');
@@ -28,7 +28,7 @@ function isFilled() {
     document.getElementById('btn').removeAttribute('disabled');
   }
 
-  if (username === '' || password === '' || checked === false) {
+  if (username === '' || password === '' || !checked) {
     document.getElementById('btn').setAttribute('disabled', '');
   }
 }

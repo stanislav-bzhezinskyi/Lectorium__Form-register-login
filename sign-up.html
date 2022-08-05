@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sign-up.css">
+  <script src="/sign-up.js" defer></script>
+  <title>Sign Up</title>
+</head>
+<body>
+  <form action="/" method="post" class="form">
+    <div id="form__header-links" class="form__header-links">
+      <a href="/index.html" class="form__link" id="sign-in-link" >SIGN IN</a>
+      <a href="/sign-up.html" class="form__link active-link" id="sign-up-link" >SIGN UP</a>
+    </div>
+    <div class="container">
+      <div class="input-container">
+        <div class="form__title">
+          Create Username
+        </div>
+        <input
+          type="text"
+          class="form__input"
+          id="username"
+          name="username"
+        >
+        <p class="username-alert alert">Username cannot be empty</p>
+      </div>
+      <div class="input-container">
+        <div class="form__title">
+          Age
+        </div>
+        <input
+          type="number"
+          class="form__input"
+          id="age"
+          name="age"
+        >
+        <p class="age-alert alert">Use only numbers</p>
+      </div>
+      <div class="input-container">
+        <div class="form__title">
+          E-mail
+        </div>
+        <input
+          type="email"
+          class="form__input"
+          id="email"
+          name="email"
+          required
+        >
+        <p class="email-alert alert">Enter your e-mail</p>
+      </div>
+      <div class="input-container">
+        <div class="form__title">
+          Password
+        </div>
+        <input
+          type="password"
+          class="form__input"
+          id="password"
+          name="password"
+        >
+        <p class="password-alert alert">Create your password</p>
+      </div>
+      <div class="input-container">
+        <div class="form__title">
+          Confirm Password
+        </div>
+        <input
+          type="password"
+          class="form__input"
+          id="confirm_password"
+        >
+        <p class="confirm_password-alert alert">Confirm your password</p>
+      </div>
+
+    </div>
+
+    <button type="submit" class="form__button" id="btn">SIGN UP</button>
+
+  </form>
+</body>
+</html>
