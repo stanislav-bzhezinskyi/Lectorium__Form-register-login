@@ -2,49 +2,189 @@
 
 const form = document.querySelector('.form');
 
-const usernameAlertMessage = document.querySelector('.username-alert');
-const ageAlertMessage = document.querySelector('.age-alert');
-const emailAlertMessage = document.querySelector('.email-alert');
-const passwordAlertMessage = document.querySelector('.password-alert');
-const confirmPasswordAlertMessage = document.querySelector('.confirm_password-alert');
-const username = document.querySelector('#username');
-const age = document.querySelector('#age');
-const email = document.querySelector('#email');
-const pass = document.querySelector('#password');
-const confPass = document.querySelector('#confirm_password');
+const username = form.username;
+const age = form.age;
+const email = form.email;
+const pass = form.password;
+const confPass = form.confirm_password;
+const usernameAlertMessage = username.nextElementSibling;
+const ageAlertMessage = age.nextElementSibling;
+const emailAlertMessage = email.nextElementSibling;
+const passwordAlertMessage = pass.nextElementSibling;
+const confirmPasswordAlertMessage = confPass.nextElementSibling;
 
-document.getElementById('btn').setAttribute('disabled', '');
+form.btn.setAttribute('disabled', '');
+
+function usernameInput(value) {
+  if (value === '') {
+    username.removeAttribute('data-veryfied');
+    usernameAlertMessage.removeAttribute('hidden');
+    usernameAlertMessage.innerHTML = 'Username cannot be empty';
+    usernameAlertMessage.className = 'alert';
+  } else {
+    username.setAttribute('data-veryfied', '');
+    usernameAlertMessage.removeAttribute('hidden');
+    usernameAlertMessage.innerHTML = 'Name veryfied';
+    usernameAlertMessage.className = 'alert--green';
+  }
+}
+
+function ageInput(value) {
+  if (value === '') {
+    ageAlertMessage.className = 'alert';
+    ageAlertMessage.innerHTML = 'Use only numbers';
+    ageAlertMessage.removeAttribute('hidden');
+  }
+
+  if (value < 15) {
+    ageAlertMessage.innerHTML = 'You are to young';
+    ageAlertMessage.className = 'alert';
+    ageAlertMessage.removeAttribute('hidden');
+    age.removeAttribute('data-veryfied');
+  }
+  
+  if (value >= 15 && value < 110) {
+    age.setAttribute('data-veryfied', '');
+    ageAlertMessage.removeAttribute('hidden');
+    ageAlertMessage.className = 'alert--green';
+    ageAlertMessage.innerHTML = 'Age veryfied';
+  } 
+  
+  if (value > 110) {
+    age.setAttribute('data-veryfied', '');
+    ageAlertMessage.removeAttribute('hidden');
+    ageAlertMessage.innerHTML = 'Hello highlander!';
+    ageAlertMessage.className = 'alert--green';
+  };
+}
+
+function emailInput(value) {
+  const mailValueCheck = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+  if (value === '') {
+    email.removeAttribute('data-veryfied');
+    emailAlertMessage.removeAttribute('hidden');
+  }
+
+  if (value !== '' && mailValueCheck.test(value)) {
+    email.setAttribute('data-veryfied', '');
+    emailAlertMessage.innerHTML = 'Your email is valid';
+    emailAlertMessage.className = 'alert--green';
+    emailAlertMessage.removeAttribute('hidden');
+  }
+
+  if (value !== '' && !mailValueCheck.test(value)) {
+    email.removeAttribute('data-veryfied');
+    emailAlertMessage.innerHTML = 'Your email is invalid';
+    emailAlertMessage.className = 'alert';
+    emailAlertMessage.removeAttribute('hidden');
+  }
+}
+
+function passwordInput(value) {
+  if (value === confPass.value) {
+    confPass.setAttribute('data-veryfied', '');
+    pass.setAttribute('data-veryfied', '');
+    confirmPasswordAlertMessage.className = 'alert--green';
+    confirmPasswordAlertMessage.innerHTML = 'Your password veryfied';
+    confirmPasswordAlertMessage.removeAttribute('hidden');
+  }
+
+  if (value.length < 8 || value.length > 16) {
+    pass.removeAttribute('data-veryfied');
+    passwordAlertMessage.removeAttribute('hidden');
+    passwordAlertMessage.innerHTML = 'Your password is not correct length';
+    passwordAlertMessage.className = 'alert';
+  }
+
+  if (value === '') {
+    pass.removeAttribute('data-veryfied');
+    confPass.value = '';
+    passwordAlertMessage.className = 'alert';
+    passwordAlertMessage.innerHTML = 'Create your password';
+    confirmPasswordAlertMessage.innerHTML = 'Confirm your password';
+    confirmPasswordAlertMessage.removeAttribute('hidden');
+    confirmPasswordAlertMessage.className = 'alert';
+    passwordAlertMessage.removeAttribute('hidden');
+  }
+
+  if (value !== '' && value.length >= 8 && value.length <= 16) {
+    pass.setAttribute('data-veryfied', '');
+    confPass.removeAttribute('disabled');
+    passwordAlertMessage.setAttribute('hidden', true);
+  }
+
+  if (value === confPass.value && value >= 8 && value <= 16) {
+    confPass.setAttribute('data-veryfied', '');
+    confirmPasswordAlertMessage.className = 'alert--green';
+    confirmPasswordAlertMessage.innerHTML = 'Your password veryfied';
+    confirmPasswordAlertMessage.removeAttribute('hidden');
+  }
+
+  if (value !== confPass.value) {
+    confirmPasswordAlertMessage.className = 'alert';
+    confirmPasswordAlertMessage.innerHTML = 'Your password is not match';
+    confirmPasswordAlertMessage.removeAttribute('hidden');
+    confPass.removeAttribute('data-veryfied');
+  }
+}
+
+function confPassInput(value) {
+  if (value === '') {
+    confirmPasswordAlertMessage.className = 'alert';
+    confirmPasswordAlertMessage.innerHTML = 'Confirm your password';
+    confirmPasswordAlertMessage.removeAttribute('hidden');
+    confPass.removeAttribute('data-veryfied');
+  }
+
+  if (value !== pass.value && pass.hasAttribute('data-veryfied')) {
+    confirmPasswordAlertMessage.className = 'alert';
+    confirmPasswordAlertMessage.innerHTML = 'Your password is not match';
+    confirmPasswordAlertMessage.removeAttribute('hidden');
+    confPass.removeAttribute('data-veryfied');
+  }
+
+  if (value === pass.value) {
+    confPass.setAttribute('data-veryfied', '');
+    confirmPasswordAlertMessage.className = 'alert--green';
+    confirmPasswordAlertMessage.innerHTML = 'Your password veryfied';
+    confirmPasswordAlertMessage.removeAttribute('hidden');
+  }
+
+  if (!pass.hasAttribute('data-veryfied')) {
+    confirmPasswordAlertMessage.className = 'alert';
+    confirmPasswordAlertMessage.removeAttribute('hidden');
+    confirmPasswordAlertMessage.innerHTML = 'Confirm your password';
+    confPass.removeAttribute('data-veryfied');
+  }
+}
 
 form.addEventListener('focusin', (event) => {
   const item = event.target;
   
-  if (item === document.getElementById('username')) {
+  if (item.id === 'username') {
     usernameAlertMessage.setAttribute('hidden', true);
   }
 
-  if (item === document.getElementById('age')) {
+  if (item.id === 'age') {
     ageAlertMessage.setAttribute('hidden', true);
   }
 
-  if (item === document.getElementById('email')) {
+  if (item.id === 'email') {
     emailAlertMessage.setAttribute('hidden', true);
   }
 
-  if (item === document.getElementById('password')) {
-    passwordAlertMessage.className = 'alert--green';
+  if (item.id === 'password') {
+    passwordAlertMessage.className = 'alert--green long-alert';
     passwordAlertMessage.innerHTML = 'Your password length min 8 - 16 symbols';
     confirmPasswordAlertMessage.innerHTML = 'Confirm your password';
+    confirmPasswordAlertMessage.className = 'alert';
   }
 
-  if (item === document.getElementById('confirm_password')) {
-    if (pass.value === '') {
-      confPass.setAttribute('disabled', true);
-    }
-    
-    if (pass.value !== '') {
-      confirmPasswordAlertMessage.setAttribute('hidden', true);
-    }
-
+  if (item.id === 'confirm_password') {
+    pass.value === ''
+      ? confPass.setAttribute('disabled', true)
+      : confirmPasswordAlertMessage.setAttribute('hidden', true);
     confirmPasswordAlertMessage.innerHTML = 'First create your password';
   }
 });
@@ -52,155 +192,37 @@ form.addEventListener('focusin', (event) => {
 form.addEventListener('focusout', (event) => {
   const item = event.target;
 
-  if (item === document.getElementById('username')) {
-      if (item.value === '') {
-        username.removeAttribute('veryfied')
-        usernameAlertMessage.removeAttribute('hidden');
-      }
-
-      if (item.value !== '') {
-        username.setAttribute('veryfied', '')
-      }
+  if (item.id === 'username') {
+    usernameInput(item.value);
   }
 
-  if (item === document.getElementById('age')) {
-    if (item.value < 15) {
-      ageAlertMessage.innerHTML = 'You are to young'
-      ageAlertMessage.removeAttribute('hidden');
-      age.removeAttribute('veryfied')
-    }
-
-    if (item.value >= 15) {
-      age.setAttribute('veryfied', '')
-    }
-
-    if (item.value === '') {
-      ageAlertMessage.innerHTML = 'Use only numbers'
-      ageAlertMessage.removeAttribute('hidden');
-    }
+  if (item.id === 'age') {
+    ageInput(item.value);
   }
 
-  if (item === document.getElementById('email')) {
-    if (item.value === '') {
-      email.removeAttribute('veryfied');
-      emailAlertMessage.removeAttribute('hidden');
-    }
-
-    if (item.value !== '' && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(item.value)) {
-      email.setAttribute('veryfied', '');
-      emailAlertMessage.innerHTML = 'Your email is valid';
-      emailAlertMessage.className = 'alert--green';
-      emailAlertMessage.removeAttribute('hidden');
-    }
-
-    if (item.value !== '' && !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(item.value)) {
-      email.removeAttribute('veryfied');
-      emailAlertMessage.innerHTML = 'Your email is invalid';
-      emailAlertMessage.className = 'alert';
-      emailAlertMessage.removeAttribute('hidden');
-    }
+  if (item.id === 'email') {
+    emailInput(item.value);
   }
 
-  if (item === document.getElementById('password')) {
-    if (item.value === confPass.value) {
-      confPass.setAttribute('veryfied', '');
-      pass.setAttribute('veryfied', '');
-      confirmPasswordAlertMessage.className = 'alert--green';
-      confirmPasswordAlertMessage.innerHTML = 'Your password veryfied';
-      confirmPasswordAlertMessage.removeAttribute('hidden');
-    }
-
-    if (item.value.length < 8 || item.value.length > 16) {
-      pass.removeAttribute('veryfied');
-      passwordAlertMessage.removeAttribute('hidden');
-      passwordAlertMessage.innerHTML = 'Your password is not correct length';
-      passwordAlertMessage.className = 'alert';
-    }
-
-    if (item.value === '') {
-      pass.removeAttribute('veryfied');
-      confPass.value = '';
-      passwordAlertMessage.className = 'alert';
-      passwordAlertMessage.innerHTML = 'Create your password';
-      confirmPasswordAlertMessage.innerHTML = 'Confirm your password';
-      confirmPasswordAlertMessage.removeAttribute('hidden');
-      passwordAlertMessage.removeAttribute('hidden');
-    }
-
-    if (item.value !== '' && item.value.length >= 8 && item.value.length <= 16) {
-      pass.setAttribute('veryfied', '');
-
-      confPass.removeAttribute('disabled');
-      passwordAlertMessage.setAttribute('hidden', true);
-    }
-
-    if (item.value === confPass.value && item.value >= 8 && item.value <= 16) {
-      confPass.setAttribute('veryfied', '')
-      confirmPasswordAlertMessage.className = 'alert--green';
-      confirmPasswordAlertMessage.innerHTML = 'Your password veryfied';
-      confirmPasswordAlertMessage.removeAttribute('hidden');
-    }
-
-    if (item.value !== confPass.value) {
-      confirmPasswordAlertMessage.className = 'alert';
-      confirmPasswordAlertMessage.innerHTML = 'Your password is not match';
-      confirmPasswordAlertMessage.removeAttribute('hidden');
-      confPass.removeAttribute('veryfied')
-    }
+  if (item.id === 'password') {
+    passwordInput(item.value);
   }
 
-  if (item === document.getElementById('confirm_password')) {
-    if (item.value === '') {
-      confirmPasswordAlertMessage.className = 'alert';
-      confirmPasswordAlertMessage.innerHTML = 'Confirm your password';
-      confirmPasswordAlertMessage.removeAttribute('hidden');
-      confPass.removeAttribute('veryfied')
-    }
-
-    if (item.value !== pass.value && pass.hasAttribute('veryfied')) {
-      confirmPasswordAlertMessage.className = 'alert';
-      confirmPasswordAlertMessage.innerHTML = 'Your password is not match';
-      confirmPasswordAlertMessage.removeAttribute('hidden');
-      confPass.removeAttribute('veryfied')
-    }
-
-    if (item.value === pass.value) {
-      confPass.setAttribute('veryfied', '')
-      confirmPasswordAlertMessage.className = 'alert--green';
-      confirmPasswordAlertMessage.innerHTML = 'Your password veryfied';
-      confirmPasswordAlertMessage.removeAttribute('hidden');
-    }
-
-    if (!pass.hasAttribute('veryfied')) {
-      confirmPasswordAlertMessage.className = 'alert';
-      confirmPasswordAlertMessage.removeAttribute('hidden');
-      confirmPasswordAlertMessage.innerHTML = 'Confirm your password';
-      confPass.removeAttribute('veryfied')
-    }
+  if (item.id === 'confirm_password') {
+    confPassInput(item.value);
   }
 
-  if (
-      username.hasAttribute('veryfied') &&
-      age.hasAttribute('veryfied') &&
-      email.hasAttribute('veryfied') &&
-      pass.hasAttribute('veryfied') &&
-      confPass.hasAttribute('veryfied')
-    )
-    {
-      document.getElementById('btn').removeAttribute('disabled');
-    }
+  let count = 0;
 
-  if (
-      !username.hasAttribute('veryfied') ||
-      !age.hasAttribute('veryfied') ||
-      !email.hasAttribute('veryfied') ||
-      !pass.hasAttribute('veryfied') ||
-      !confPass.hasAttribute('veryfied')
-    )
-    {
-      document.getElementById('btn').setAttribute('disabled', '');
-    }
+  [...form].map(item => {
+    item.hasAttribute('data-veryfied') ? count++ : count--;
+  })
+
+  count === 4 
+    ? document.getElementById('btn').removeAttribute('disabled')
+    : document.getElementById('btn').setAttribute('disabled', '');
 });
+
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
