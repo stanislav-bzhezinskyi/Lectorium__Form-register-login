@@ -16,201 +16,180 @@ const confirmPasswordAlertMessage = confPass.nextElementSibling;
 form.btn.setAttribute('disabled', '');
 
 function usernameInput(value) {
-  if (value === '') {
-    username.removeAttribute('data-veryfied');
-    usernameAlertMessage.removeAttribute('hidden');
-    usernameAlertMessage.innerHTML = 'Username cannot be empty';
-    usernameAlertMessage.className = 'alert';
-  } else {
-    username.setAttribute('data-veryfied', '');
-    usernameAlertMessage.removeAttribute('hidden');
-    usernameAlertMessage.innerHTML = 'Name veryfied';
-    usernameAlertMessage.className = 'alert--green';
-  }
+  value ? (
+    username.setAttribute('data-veryfied', ''),
+    usernameAlertMessage.removeAttribute('hidden'),
+    usernameAlertMessage.innerHTML = 'Name veryfied',
+    usernameAlertMessage.className = 'alert--green'
+  ) : (
+    username.removeAttribute('data-veryfied'),
+    usernameAlertMessage.removeAttribute('hidden'),
+    usernameAlertMessage.innerHTML = 'Username cannot be empty',
+    usernameAlertMessage.className = 'alert'
+  )
 }
 
 function ageInput(value) {
-  if (value === '') {
-    ageAlertMessage.className = 'alert';
-    ageAlertMessage.innerHTML = 'Use only numbers';
-    ageAlertMessage.removeAttribute('hidden');
-  }
+  value < 15 ? (
+    ageAlertMessage.innerHTML = 'You are to young',
+    ageAlertMessage.className = 'alert',
+    ageAlertMessage.removeAttribute('hidden'),
+    age.removeAttribute('data-veryfied')
+  ) : null;
+  
+  (value >= 15 && value < 110) ? (
+    age.setAttribute('data-veryfied', ''),
+    ageAlertMessage.removeAttribute('hidden'),
+    ageAlertMessage.className = 'alert--green',
+    ageAlertMessage.innerHTML = 'Age veryfied'
+  ) : null;
+  
+  value > 110 ? (
+    age.setAttribute('data-veryfied', ''),
+    ageAlertMessage.removeAttribute('hidden'),
+    ageAlertMessage.innerHTML = 'Hello highlander!',
+    ageAlertMessage.className = 'alert--green'
+  ) : null;
 
-  if (value < 15) {
-    ageAlertMessage.innerHTML = 'You are to young';
-    ageAlertMessage.className = 'alert';
-    ageAlertMessage.removeAttribute('hidden');
-    age.removeAttribute('data-veryfied');
-  }
-  
-  if (value >= 15 && value < 110) {
-    age.setAttribute('data-veryfied', '');
-    ageAlertMessage.removeAttribute('hidden');
-    ageAlertMessage.className = 'alert--green';
-    ageAlertMessage.innerHTML = 'Age veryfied';
-  } 
-  
-  if (value > 110) {
-    age.setAttribute('data-veryfied', '');
-    ageAlertMessage.removeAttribute('hidden');
-    ageAlertMessage.innerHTML = 'Hello highlander!';
-    ageAlertMessage.className = 'alert--green';
-  };
+  !value ? (
+    ageAlertMessage.className = 'alert',
+    ageAlertMessage.innerHTML = 'Use only numbers',
+    ageAlertMessage.removeAttribute('hidden')
+  ) : null;
 }
 
 function emailInput(value) {
   const mailValueCheck = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-  if (value === '') {
-    email.removeAttribute('data-veryfied');
-    emailAlertMessage.removeAttribute('hidden');
-  }
+  value === '' ? (
+    email.removeAttribute('data-veryfied'),
+    emailAlertMessage.removeAttribute('hidden'),
+    emailAlertMessage.innerHTML = 'Enter your mail'
+  ) : null;
 
-  if (value !== '' && mailValueCheck.test(value)) {
-    email.setAttribute('data-veryfied', '');
-    emailAlertMessage.innerHTML = 'Your email is valid';
-    emailAlertMessage.className = 'alert--green';
-    emailAlertMessage.removeAttribute('hidden');
-  }
+  (value !== '' && mailValueCheck.test(value)) ? (
+    email.setAttribute('data-veryfied', ''),
+    emailAlertMessage.innerHTML = 'Your email is valid',
+    emailAlertMessage.className = 'alert--green',
+    emailAlertMessage.removeAttribute('hidden')
+  ) : null;
 
-  if (value !== '' && !mailValueCheck.test(value)) {
-    email.removeAttribute('data-veryfied');
-    emailAlertMessage.innerHTML = 'Your email is invalid';
-    emailAlertMessage.className = 'alert';
-    emailAlertMessage.removeAttribute('hidden');
-  }
+  value !== '' && !mailValueCheck.test(value) ? (
+    email.removeAttribute('data-veryfied'),
+    emailAlertMessage.innerHTML = 'Your email is invalid',
+    emailAlertMessage.className = 'alert',
+    emailAlertMessage.removeAttribute('hidden')
+  ) : null;
 }
 
 function passwordInput(value) {
-  if (value === confPass.value) {
-    confPass.setAttribute('data-veryfied', '');
-    pass.setAttribute('data-veryfied', '');
-    confirmPasswordAlertMessage.className = 'alert--green';
-    confirmPasswordAlertMessage.innerHTML = 'Your password veryfied';
-    confirmPasswordAlertMessage.removeAttribute('hidden');
-  }
+  value === confPass.value ? (
+    confPass.setAttribute('data-veryfied', ''),
+    pass.setAttribute('data-veryfied', ''),
+    confirmPasswordAlertMessage.className = 'alert--green',
+    confirmPasswordAlertMessage.innerHTML = 'Your password veryfied',
+    confirmPasswordAlertMessage.removeAttribute('hidden')
+  ) : null;
 
-  if (value.length < 8 || value.length > 16) {
-    pass.removeAttribute('data-veryfied');
-    passwordAlertMessage.removeAttribute('hidden');
-    passwordAlertMessage.innerHTML = 'Your password is not correct length';
-    passwordAlertMessage.className = 'alert';
-  }
+  (value.length < 8 || value.length > 16) ? (
+    pass.removeAttribute('data-veryfied'),
+    passwordAlertMessage.removeAttribute('hidden'),
+    passwordAlertMessage.innerHTML = 'Your password is not correct length',
+    passwordAlertMessage.className = 'alert'
+  ) : null;
 
-  if (value === '') {
-    pass.removeAttribute('data-veryfied');
-    confPass.value = '';
-    passwordAlertMessage.className = 'alert';
-    passwordAlertMessage.innerHTML = 'Create your password';
-    confirmPasswordAlertMessage.innerHTML = 'Confirm your password';
-    confirmPasswordAlertMessage.removeAttribute('hidden');
-    confirmPasswordAlertMessage.className = 'alert';
-    passwordAlertMessage.removeAttribute('hidden');
-  }
+  value === '' ? (
+    pass.removeAttribute('data-veryfied'),
+    confPass.value = '',
+    passwordAlertMessage.className = 'alert',
+    passwordAlertMessage.innerHTML = 'Create your password',
+    confirmPasswordAlertMessage.innerHTML = 'Confirm your password',
+    confirmPasswordAlertMessage.removeAttribute('hidden'),
+    confPass.removeAttribute('disabled'),
+    confirmPasswordAlertMessage.className = 'alert',
+    passwordAlertMessage.removeAttribute('hidden')
+  ) : null;
 
-  if (value !== '' && value.length >= 8 && value.length <= 16) {
-    pass.setAttribute('data-veryfied', '');
-    confPass.removeAttribute('disabled');
-    passwordAlertMessage.setAttribute('hidden', true);
-  }
+  (value !== '' && value.length >= 8 && value.length <= 16) ? (
+    pass.setAttribute('data-veryfied', ''),
+    confPass.removeAttribute('disabled'),
+    passwordAlertMessage.setAttribute('hidden', true)
+  ) : null;
 
-  if (value === confPass.value && value >= 8 && value <= 16) {
-    confPass.setAttribute('data-veryfied', '');
-    confirmPasswordAlertMessage.className = 'alert--green';
-    confirmPasswordAlertMessage.innerHTML = 'Your password veryfied';
-    confirmPasswordAlertMessage.removeAttribute('hidden');
-  }
+  (value === confPass.value && value >= 8 && value <= 16) ? (
+    confPass.setAttribute('data-veryfied', ''),
+    confirmPasswordAlertMessage.className = 'alert--green',
+    confirmPasswordAlertMessage.innerHTML = 'Your password veryfied',
+    confirmPasswordAlertMessage.removeAttribute('hidden')
+  ) : null;
 
-  if (value !== confPass.value) {
-    confirmPasswordAlertMessage.className = 'alert';
-    confirmPasswordAlertMessage.innerHTML = 'Your password is not match';
-    confirmPasswordAlertMessage.removeAttribute('hidden');
-    confPass.removeAttribute('data-veryfied');
-  }
+  (value !== confPass.value) ? (
+    confirmPasswordAlertMessage.className = 'alert',
+    confirmPasswordAlertMessage.innerHTML = 'Your password is not match',
+    confirmPasswordAlertMessage.removeAttribute('hidden'),
+    confPass.removeAttribute('data-veryfied')
+  ) : null;
 }
 
 function confPassInput(value) {
-  if (value === '') {
-    confirmPasswordAlertMessage.className = 'alert';
-    confirmPasswordAlertMessage.innerHTML = 'Confirm your password';
-    confirmPasswordAlertMessage.removeAttribute('hidden');
-    confPass.removeAttribute('data-veryfied');
-  }
+  (value === '') ? (
+    confirmPasswordAlertMessage.className = 'alert',
+    confirmPasswordAlertMessage.innerHTML = 'Confirm your password',
+    confirmPasswordAlertMessage.removeAttribute('hidden'),
+    confPass.removeAttribute('data-veryfied')
+  ) : null;
 
-  if (value !== pass.value && pass.hasAttribute('data-veryfied')) {
-    confirmPasswordAlertMessage.className = 'alert';
-    confirmPasswordAlertMessage.innerHTML = 'Your password is not match';
-    confirmPasswordAlertMessage.removeAttribute('hidden');
-    confPass.removeAttribute('data-veryfied');
-  }
+  (value !== pass.value && pass.hasAttribute('data-veryfied')) ? (
+    confirmPasswordAlertMessage.className = 'alert',
+    confirmPasswordAlertMessage.innerHTML = 'Your password is not match',
+    confirmPasswordAlertMessage.removeAttribute('hidden'),
+    confPass.removeAttribute('data-veryfied')
+  ) : null;
 
-  if (value === pass.value) {
-    confPass.setAttribute('data-veryfied', '');
-    confirmPasswordAlertMessage.className = 'alert--green';
-    confirmPasswordAlertMessage.innerHTML = 'Your password veryfied';
-    confirmPasswordAlertMessage.removeAttribute('hidden');
-  }
+  (value === pass.value) ? (
+    confPass.setAttribute('data-veryfied', ''),
+    confirmPasswordAlertMessage.className = 'alert--green',
+    confirmPasswordAlertMessage.innerHTML = 'Your password veryfied',
+    confirmPasswordAlertMessage.removeAttribute('hidden')
+  ) : null;
 
-  if (!pass.hasAttribute('data-veryfied')) {
-    confirmPasswordAlertMessage.className = 'alert';
-    confirmPasswordAlertMessage.removeAttribute('hidden');
-    confirmPasswordAlertMessage.innerHTML = 'Confirm your password';
-    confPass.removeAttribute('data-veryfied');
-  }
+  (!pass.hasAttribute('data-veryfied')) ? (
+    confirmPasswordAlertMessage.className = 'alert',
+    confirmPasswordAlertMessage.removeAttribute('hidden'),
+    confirmPasswordAlertMessage.innerHTML = 'Confirm your password',
+    confPass.removeAttribute('data-veryfied')
+  ) : null;
 }
 
 form.addEventListener('focusin', (event) => {
   const item = event.target;
   
-  if (item.id === 'username') {
-    usernameAlertMessage.setAttribute('hidden', true);
-  }
+  item.id === 'username' ? usernameAlertMessage.setAttribute('hidden', true) : null;
+  item.id === 'age' ? ageAlertMessage.setAttribute('hidden', true) : null;
+  item.id === 'email' ? emailAlertMessage.setAttribute('hidden', true) : null;
+  item.id === 'password' ? (
+    passwordAlertMessage.className = 'alert--green long-alert',
+    passwordAlertMessage.innerHTML = 'Your password length min 8 - 16 symbols',
+    confirmPasswordAlertMessage.innerHTML = 'Confirm your password',
+    confirmPasswordAlertMessage.className = 'alert'
+  ) : null;
 
-  if (item.id === 'age') {
-    ageAlertMessage.setAttribute('hidden', true);
-  }
-
-  if (item.id === 'email') {
-    emailAlertMessage.setAttribute('hidden', true);
-  }
-
-  if (item.id === 'password') {
-    passwordAlertMessage.className = 'alert--green long-alert';
-    passwordAlertMessage.innerHTML = 'Your password length min 8 - 16 symbols';
-    confirmPasswordAlertMessage.innerHTML = 'Confirm your password';
-    confirmPasswordAlertMessage.className = 'alert';
-  }
-
-  if (item.id === 'confirm_password') {
-    pass.value === ''
-      ? confPass.setAttribute('disabled', true)
-      : confirmPasswordAlertMessage.setAttribute('hidden', true);
-    confirmPasswordAlertMessage.innerHTML = 'First create your password';
-  }
+  item.id === 'confirm_password' ? (
+    pass.value === '' ? (
+      confPass.setAttribute('disabled', true),
+      confirmPasswordAlertMessage.innerHTML = 'First create your password'
+    ) : confirmPasswordAlertMessage.setAttribute('hidden', true)
+  ) : null;
 });
 
 form.addEventListener('focusout', (event) => {
   const item = event.target;
 
-  if (item.id === 'username') {
-    usernameInput(item.value);
-  }
-
-  if (item.id === 'age') {
-    ageInput(item.value);
-  }
-
-  if (item.id === 'email') {
-    emailInput(item.value);
-  }
-
-  if (item.id === 'password') {
-    passwordInput(item.value);
-  }
-
-  if (item.id === 'confirm_password') {
-    confPassInput(item.value);
-  }
+  item.id === 'username' ? usernameInput(item.value) : null;
+  item.id === 'age' ? ageInput(item.value) : null;
+  item.id === 'email' ? emailInput(item.value) : null;
+  item.id === 'password' ? passwordInput(item.value) : null;
+  item.id === 'confirm_password' ? confPassInput(item.value) : null;
 
   let count = 0;
 
@@ -228,8 +207,10 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   const data = new FormData(form);
+
   console.log(
-      Object.fromEntries(data.entries())
+    Object.fromEntries(data.entries())
   );
+
   alert('Form sent');
 });
