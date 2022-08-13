@@ -17,6 +17,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   max-width: 1024px;
+  min-width: 320px;
   height: 100%;
   padding: 48px 53px;
   background: linear-gradient(rgba(57,48,89,255) 0%, rgba(45,11,64,255) 100%);
@@ -50,14 +51,15 @@ body {
   }
 
 &__input {
+  width: 100%;
   font-size: 25px;
-  box-sizing: border-box;
   height: 48px;
   border: none;
   background-color: $darkLightColor;
   color: white;
   padding: 0 20px;
   margin-bottom: 24px;
+  box-sizing: border-box;
 
     &:focus {
       outline: none;
@@ -113,25 +115,50 @@ span {
   color: white
 }
 
-.alert {
-  position: absolute;
-  bottom: -12px;
-  color: red;
-
-  &--green {
-    position: absolute;
-    bottom: -12px;
-    color: rgb(21, 245, 21);
-  }
-}
-
 .input-container {
   position: relative;
   margin-bottom: 20px;
+  height: max-content;
+  width: 100%;
+  box-sizing: border-box;
 
   &:last-child {
     margin-bottom: 85px;
   }
 }
 
+.alert {
+  position: absolute;
+  color: red;
+  font-size: 12px;
+  bottom: -5px;
 
+  @media (min-width: 455px) {
+    font-size: 16px;
+    bottom: -12px;
+  }
+
+  &--green {
+    position: absolute;
+    color: rgb(21, 245, 21);
+    font-size: 12px;
+    bottom: -5px;
+
+    @media (min-width: 455px) {
+      font-size: 16px;
+      bottom: -12px;
+    }
+  }
+}
+
+.long-alert {
+  position: absolute;
+  color: rgb(21, 245, 21);
+  font-size: 12px;
+  bottom: -15px;
+
+  @media (min-width: 455px) {
+    font-size: 16px;
+    bottom: -12px;
+  }
+}
